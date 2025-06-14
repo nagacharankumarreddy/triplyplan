@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 
 // Format date to dd-mm-yyyy
@@ -20,6 +20,7 @@ function App() {
 
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
+  const responseRef = useRef(null);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -49,6 +50,9 @@ function App() {
         payload
       );
       setResponse(res.data.response);
+      setTimeout(() => {
+        responseRef.current?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
     } catch (err) {
       setResponse("Something went wrong. Please try again.");
     } finally {
@@ -57,19 +61,26 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-100 to-white p-4">
-      <div className="max-w-3xl mx-auto text-center mb-6">
-        <h1 className="text-3xl font-bold text-blue-700">TriplyPlan</h1>
-        <p className="text-sm sm:text-base text-gray-600 mt-1">
-          Plan smarter, travel better.
-        </p>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white px-4 py-8">
+      <div className="max-w-4xl mx-auto space-y-10">
+        <header className="text-center mb-6">
+          <h1 className="text-4xl font-bold text-blue-700">TriplyPlan</h1>
+          <p className="text-gray-600 mt-2 text-lg">
+            Your AI-Powered Trip Planner
+          </p>
+        </header>
 
+        {/* FORM */}
         <form
           onSubmit={handleSubmit}
-          className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6"
+          className="bg-white shadow-lg rounded-xl p-6 grid grid-cols-1 sm:grid-cols-2 gap-6"
         >
-          <div className="flex flex-col">
-            <label className="mb-1 font-medium text-gray-700">
+          <h2 className="col-span-1 sm:col-span-2 text-lg font-semibold text-blue-700 border-b pb-2">
+            Trip Details
+          </h2>
+
+          <div>
+            <label className="block font-medium mb-1 text-gray-700">
               Destination
             </label>
             <input
@@ -78,18 +89,21 @@ function App() {
               value={form.destination}
               onChange={handleChange}
               required
-              className="border border-gray-300 p-2 rounded-lg"
+              placeholder="e.g. India, Hyd, Goa..."
+              className="w-full border border-gray-300 p-2 rounded-lg"
             />
           </div>
 
-          <div className="flex flex-col">
-            <label className="mb-1 font-medium text-gray-700">Trip Type</label>
+          <div>
+            <label className="block font-medium mb-1 text-gray-700">
+              Trip Type
+            </label>
             <select
               name="tripType"
               value={form.tripType}
               onChange={handleChange}
               required
-              className="border border-gray-300 p-2 rounded-lg"
+              className="w-full border border-gray-300 p-2 rounded-lg"
             >
               <option value="">Select</option>
               <option value="Business">Business</option>
@@ -99,32 +113,36 @@ function App() {
             </select>
           </div>
 
-          <div className="flex flex-col">
-            <label className="mb-1 font-medium text-gray-700">Start Date</label>
+          <div>
+            <label className="block font-medium mb-1 text-gray-700">
+              Start Date
+            </label>
             <input
               type="date"
               name="startDate"
               value={form.startDate}
               onChange={handleChange}
               required
-              className="border border-gray-300 p-2 rounded-lg"
+              className="w-full border border-gray-300 p-2 rounded-lg"
             />
           </div>
 
-          <div className="flex flex-col">
-            <label className="mb-1 font-medium text-gray-700">End Date</label>
+          <div>
+            <label className="block font-medium mb-1 text-gray-700">
+              End Date
+            </label>
             <input
               type="date"
               name="endDate"
               value={form.endDate}
               onChange={handleChange}
               required
-              className="border border-gray-300 p-2 rounded-lg"
+              className="w-full border border-gray-300 p-2 rounded-lg"
             />
           </div>
 
-          <div className="flex flex-col items-center sm:col-span-2">
-            <label className="mb-1 font-medium text-gray-700 text-center">
+          <div className="sm:col-span-2">
+            <label className="block font-medium mb-1 text-gray-700">
               Traveler Type
             </label>
             <select
@@ -132,7 +150,7 @@ function App() {
               value={form.travelerType}
               onChange={handleChange}
               required
-              className="border border-gray-300 p-2 rounded-lg w-full sm:w-72"
+              className="w-full border border-gray-300 p-2 rounded-lg"
             >
               <option value="">Select</option>
               <option value="Solo">Solo</option>
@@ -142,8 +160,8 @@ function App() {
             </select>
           </div>
 
-          <div className="sm:col-span-2 flex flex-col">
-            <label className="mb-1 font-medium text-gray-700">
+          <div className="sm:col-span-2">
+            <label className="block font-medium mb-1 text-gray-700">
               Extra Notes{" "}
               <span className="text-sm text-gray-400">(optional)</span>
             </label>
@@ -151,8 +169,8 @@ function App() {
               name="extraNotes"
               value={form.extraNotes}
               onChange={handleChange}
-              placeholder="e.g. Any medical conditions, allergies, or preferences..."
-              className="border border-gray-300 p-2 rounded-lg"
+              placeholder="e.g. allergies, preferences, or special needs"
+              className="w-full border border-gray-300 p-2 rounded-lg min-h-[100px]"
             />
           </div>
 
@@ -160,19 +178,20 @@ function App() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg font-semibold transition disabled:opacity-50"
+              className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-8 rounded-lg font-semibold transition disabled:opacity-50"
             >
               {loading ? "Generating..." : "Generate Plan"}
             </button>
           </div>
         </form>
 
+        {/* RESPONSE DISPLAY */}
         {response && (
-          <div className="mt-8 p-4 sm:p-6 bg-gray-50 border rounded-lg font-sans text-sm sm:text-base overflow-x-auto text-left">
-            <h2 className="text-lg sm:text-xl font-bold mb-4 text-gray-800">
-              Your Trip Plan
+          <div className="bg-white shadow-md rounded-xl p-6" ref={responseRef}>
+            <h2 className="text-xl font-semibold text-gray-800 mb-4">
+              Your Trip Plan ✈️
             </h2>
-            <div className="prose max-w-none">
+            <div className="prose max-w-none text-left text-gray-800">
               <ReactMarkdown
                 components={{
                   p: ({ node, ...props }) => (
