@@ -44,7 +44,10 @@ function App() {
         endDate: formatDate(form.endDate),
       };
 
-      const res = await axios.post("http://localhost:5000/api/plan", payload);
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_BASE_URL}/api/plan`,
+        payload
+      );
       setResponse(res.data.response);
     } catch (err) {
       setResponse("Something went wrong. Please try again.");
