@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/TriplyPlan/static/css/main.1d42aba0.css",
+    "main.js": "/TriplyPlan/static/js/main.9205ea78.js",
+    "index.html": "/TriplyPlan/index.html",
+    "main.1d42aba0.css.map": "/TriplyPlan/static/css/main.1d42aba0.css.map",
+    "main.9205ea78.js.map": "/TriplyPlan/static/js/main.9205ea78.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1d42aba0.css",
+    "static/js/main.9205ea78.js"
+  ]
+}
