@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/triplyplan/static/css/main.1d42aba0.css",
-    "main.js": "/triplyplan/static/js/main.84f9441a.js",
+    "main.css": "/triplyplan/static/css/main.675f13ae.css",
+    "main.js": "/triplyplan/static/js/main.2655a095.js",
     "index.html": "/triplyplan/index.html",
-    "main.1d42aba0.css.map": "/triplyplan/static/css/main.1d42aba0.css.map",
-    "main.84f9441a.js.map": "/triplyplan/static/js/main.84f9441a.js.map"
+    "main.675f13ae.css.map": "/triplyplan/static/css/main.675f13ae.css.map",
+    "main.2655a095.js.map": "/triplyplan/static/js/main.2655a095.js.map"
   },
   "entrypoints": [
-    "static/css/main.1d42aba0.css",
-    "static/js/main.84f9441a.js"
+    "static/css/main.675f13ae.css",
+    "static/js/main.2655a095.js"
   ]
 }
