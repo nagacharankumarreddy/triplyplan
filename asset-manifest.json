@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/TriplyPlan/static/css/main.1d42aba0.css",
-    "main.js": "/TriplyPlan/static/js/main.84f9441a.js",
-    "index.html": "/TriplyPlan/index.html",
-    "main.1d42aba0.css.map": "/TriplyPlan/static/css/main.1d42aba0.css.map",
-    "main.84f9441a.js.map": "/TriplyPlan/static/js/main.84f9441a.js.map"
+    "main.css": "/triplyplan/static/css/main.1d42aba0.css",
+    "main.js": "/triplyplan/static/js/main.84f9441a.js",
+    "index.html": "/triplyplan/index.html",
+    "main.1d42aba0.css.map": "/triplyplan/static/css/main.1d42aba0.css.map",
+    "main.84f9441a.js.map": "/triplyplan/static/js/main.84f9441a.js.map"
   },
   "entrypoints": [
     "static/css/main.1d42aba0.css",
